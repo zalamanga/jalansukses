@@ -1,0 +1,15 @@
+**
+!Dockerfile
+!public/
+!public/**
+!docker/
+!docker/nginx.conf
+**/.git
+**/.git/**
+**/.env
+**/.env.*
+**/.DS_Store
+**/*.php
+**/*.sql
+**/*.pem
+**/*.key

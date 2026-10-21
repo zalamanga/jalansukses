@@ -1,0 +1,14 @@
+{
+  "name": "jalansukses-static",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local checks for the static Jalan Sukses Amanah website.",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}

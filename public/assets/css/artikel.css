@@ -36,6 +36,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 
 }
 
@@ -57,7 +58,7 @@ a {
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   /* max-width: 1280px; */
-  margin-inline: 1.5rem;
+  margin-inline: 3rem;
 }
 
 /*=============== HEADER ===============*/
@@ -85,7 +86,7 @@ a {
   display: inline-flex;
   align-items: center;
   column-gap: 0.25rem;
-  color: var(--title-color);
+  color: #333;
   font-weight: var(--font-semi-bold);
   transition: color 0.3s;
 }
@@ -98,7 +99,7 @@ a {
   margin: 0 auto; /* Mengatur gambar agar berada di tengah, jika diperlukan */
 }
 .nav__logo:hover {
-  color: var(--first-color);
+  color: #017143;
 }
 .nav__toggle {
   position: relative;
@@ -107,7 +108,7 @@ a {
 }
 .nav__toggle-menu, .nav__toggle-close {
   font-size: 1.25rem;
-  color: var(--title-color);
+  color: #333;
   position: absolute;
   display: grid;
   place-items: center;
@@ -144,8 +145,16 @@ a {
   }
 
 }
+
+@media (max-width: 768px) {
+  .container {
+    /* max-width: 1280px; */
+    margin-inline: 1rem;
+  }
+}
+
 .nav__link {
-  color: var(--title-color);
+  color: #333;
   font-weight: var(--font-semi-bold);
   padding: 1.25rem 1.5rem;
   display: flex;
@@ -174,6 +183,8 @@ a {
   opacity: 1;
   transform: rotate(90deg);
 }
+
+
 
 /*=============== DROPDOWN ===============*/
 .dropdown__button {
@@ -208,12 +219,12 @@ a {
 }
 .dropdown__icon i {
   font-size: 1.25rem;
-  color: var(--first-color);
+  color: #017143;
 }
 .dropdown__title {
   font-size: var(--small-font-size);
   font-weight: var(--font-semi-bold);
-  color: var(--title-color);
+  color: #333;
 }
 .dropdown__list {
   row-gap: 0.25rem;
@@ -225,7 +236,7 @@ a {
   transition: color 0.3s;
 }
 .dropdown__link:hover {
-  color: var(--title-color);
+  color: #017143 !important;
 }
 
 /* Rotate dropdown icon */
@@ -233,9 +244,9 @@ a {
   transform: rotate(180deg);
 }
 
-/*=============== HOME ===============*/
-.home {
-    background: url(homejalansukses1.png) no-repeat;
+/*=============== BANNER ===============*/
+.banner {
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(bannerberita.webp);
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
@@ -244,33 +255,20 @@ a {
     align-items: center;
     text-align: center;
     font-size: 20px;
-    font-style: italic;
+    /* font-style: italic; */
     width: 100%;
-    min-height: 100vh;
+    min-height: 50vh;
     display: flex;
     padding-top: 20px;
 }
 
-.home-text h2 {
+.banner-text h2 {
     color: #fff;
     font-size: 2.2rem;
     letter-spacing: 1px;
 }
 
-.home-text p {
-    width: 60%;
-    margin: 0 auto;  /* Menyelaraskan secara horizontal */
-    color: #fff;
-    font-size: 1rem;
-    line-height: 25px;
-    display: block; /* Pastikan elemen berperilaku sebagai blok */
-}
-
-.home-btn {
-    margin-top: 30px;
-}
-
-.home-btn a {
+.banner-btn a {
     font-size: 0.9rem;
     padding: 13px 35px;
     background-color: #fff;
@@ -279,178 +277,343 @@ a {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .home-text p {
-        width: 70%;
-        font-size: 0.938rem;
-    }
-
-    .home-text h2 {
+     .banner-text h2 {
         font-size: 1.9rem;
     }
 }
 
 @media (max-width: 768px) {
-    .home-text p {
-        width: 90%;
-        font-size: 0.875rem;
-    }
-
-    .home-text h2 {
+    .banner-text h2 {
         font-size: 1.5rem;
     }
 }
 
+/*=============== ARTIKEL ===============*/
+.article {
+  background-color: #fff;
+  padding: 2rem 0;
+}
+
+.article-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.article-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.article-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.article-meta {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.article-meta>* {
+  margin: 0 0.5rem;
+}
+
+.article-featured-image {
+  margin: 2rem -1.5rem;
+}
+
+.article-featured-image img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.article-content {
+  line-height: 1.8;
+  color: #444;
+}
 
 
+.article-content ul {
+  /* margin-left: 20px; */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-left: 20px;
+  list-style-type: disc;
+  /* color: #017143; */
+  font-size: 1rem;
+  line-height: 1.5;
+}
 
-/*=============== ABOUT ===============*/
+.article-content li {
+  margin-bottom: 10px;
+}
 
-/* CSS untuk section about */
-.about {
+.article-content .hubungi {
+  margin-top: 15px;
+}
+
+.article-lead {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.article-content h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 2rem 0 1rem;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.image-gallery figure {
+  margin: 0;
+}
+
+.image-gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.image-gallery figcaption {
+  margin-top: 0.5rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+blockquote {
+  margin: 2rem 0;
+  padding: 1rem 2rem;
+  border-left: 4px solid #007bff;
+  background: #f8f9fa;
+  font-style: italic;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .article-header h1 {
+      font-size: 2rem;
+  }
+
+  .image-gallery {
+      grid-template-columns: 1fr;
+  }
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+    background-color: #ffffff;
+    padding: 40px 10%;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.logo-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    max-width: 170px;
+    margin-bottom: -15px;
+}
+
+.footer-company {
+    font-weight: bold;
+    font-size: 35px;
+    margin-bottom: 7px;
+    color: #333;
+    line-height: 1;
+}
+
+.footer-slogan {
+    color: #555;
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0;
+    margin-top: 15px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-map {
+    flex: 1.5;
+    min-width: 300px;
+}
+
+.map-container {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-heading {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: #0056b3;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: #555;
+    font-size: 32px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
+
+.footer-bottom {
+    background-color: #f8f9fa;
+    padding: 15px 10%;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    border-top: 1px solid #ddd;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .footer-map {
+        flex: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-column {
+        margin-bottom: 0;
+        align-items: center;
+        min-width: 100%;
+    }
+
+    .footer-socials {
+        justify-content: center;
+    }
+
+    .map-container {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .footer-company {
+        font-size: 30px; /* Smaller font size on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-company {
+        font-size: 24px; /* Smaller font for very small screens */
+    }
+
+    .footer-slogan {
+        font-size: 16px; /* Adjust slogan size */
+    }
+
+    .footer-links a {
+        font-size: 12px; /* Smaller link size */
+    }
+}
+/*=============== whatsapp ===============*/
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px; /* Jarak dari bawah layar */
+    right: 20px; /* Jarak dari kanan layar */
+    width: 60px; /* Lebar tombol */
+    height: 60px; /* Tinggi tombol */
+    background-color: #25d366; /* Warna hijau khas WhatsApp */
+    color: white; /* Warna ikon */
+    border-radius: 50%; /* Membuat tombol berbentuk lingkaran */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 50px 20px;
-    gap: 20px; /* Memberikan jarak antara gambar dan teks */
-}
-
-.about-img {
-    flex: 1; /* Mengatur agar gambar mengambil ruang yang proporsional */
-    text-align: center;
-}
-
-.about-img img {
-    max-width: 100%; /* Membuat gambar responsif */
-    height: auto; /* Mempertahankan aspek rasio gambar */
-    border-radius: 10px; /* Opsional: Memberikan efek rounded corners */
-}
-
-.about-text {
-    flex: 1; /* Mengatur agar teks mengambil ruang yang proporsional */
-    padding: 20px;
-}
-
-.about-text h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.about-text p {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-.about-text .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF; /* Warna tombol */
-    color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan tombol */
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000; /* Agar tombol berada di atas elemen lainnya */
 }
 
-.about-text .btn:hover {
-    background-color: #0056b3; /* Warna tombol saat hover */
+.whatsapp-button:hover {
+    transform: scale(1.1); /* Membesarkan tombol saat hover */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3); /* Menambahkan bayangan saat hover */
 }
-
-/* Responsif untuk perangkat kecil */
-@media (max-width: 768px) {
-    .about {
-        flex-direction: column; /* Mengubah layout menjadi kolom */
-        text-align: center;
-    }
-
-    .about-img, .about-text {
-        flex: unset; /* Mengatur ulang flex */
-    }
-}
-
-/*=============== LAYANAN ===============*/
-
-.layanan {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-    padding-top: 50px;
-}
-
-.layanan h1 {
-    font-size: 36px;
-    font-weight: 600;
-}
-
-.layanan p {
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 22px;
-    padding: 10px;
-}
-
-.row {
-    margin-top: 5%;
-    display: flex;
-    justify-content: space-between;
-}
-
-/* .layanan-col {
-    flex: 1 1 calc(33.33% - 20px); 
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.layanan-col img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-} */
-
-.layanan-col {
-    flex-basis: 32%;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-}
-
-.layanan-col img {
-   width: 100%; 
-   display: block;
-}
-
-.layer {
-    background: transparent;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: 0.5s;
-}
-
-.layer:hover {
-    background: rgba(0, 0, 0, 0.7);
-}
-
-.layer h3 {
-    color: #fff;
-    width: 100%;
-    font-weight: 500;
-    font-size: 26px;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.layer:hover h3 {
-    bottom: 49%;
-    opacity: 1;
-}
-
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
@@ -537,7 +700,7 @@ a {
     font-size: var(--small-font-size);
   }
   .dropdown__link:hover {
-    color: var(--first-color);
+    color: #017143;
   }
   .dropdown__item {
     cursor: pointer;
@@ -552,4 +715,3 @@ a {
     cursor: initial;
   }
 }
-

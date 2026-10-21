@@ -1,0 +1,669 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(220, 68%, 54%);
+  --first-color-lighten: hsl(220, 68%, 97%);
+  --title-color: hsl(220, 48%, 28%);
+  --text-color: hsl(220, 12%, 45%);
+  --body-color: hsl(220, 100%, 99%);
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  /* max-width: 1280px; */
+  margin-inline: 3rem;
+}
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 2px 8px hsla(220, 68%, 12%, 0.1);
+  background-color: var(--body-color);
+  z-index: var(--z-fixed);
+}
+
+/*=============== NAV ===============*/
+.nav {
+  height: var(--header-height);
+}
+.nav__data {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  color: #333;
+  font-weight: var(--font-semi-bold);
+  transition: color 0.3s;
+}
+.nav__logo img {
+  /* font-size: 1.25rem; */
+  width: 100px; /* Lebar gambar */
+  height: auto; /* Tinggi mengikuti aspek rasio gambar */
+  max-width: 100%; /* Menghindari gambar meluap dari kontainer */
+  display: block; /* Menghapus jarak default inline */
+  margin: 0 auto; /* Mengatur gambar agar berada di tengah, jika diperlukan */
+}
+.nav__logo:hover {
+  color: #017143;
+}
+.nav__toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+.nav__toggle-menu, .nav__toggle-close {
+  font-size: 1.25rem;
+  color: #333;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  inset: 0;
+  cursor: pointer;
+  transition: opacity 0.1s, transform 0.4s;
+}
+.nav__toggle-close {
+  opacity: 0;
+}
+@media screen and (max-width: 1118px) {
+  .nav__menu {
+    background-color: var(--body-color);
+    position: absolute;
+    left: 0;
+    top: 2.5rem;
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    overflow: auto;
+    padding-block: 1.5rem 4rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: top 0.4s, opacity 0.3s;
+  }
+  .nav__menu::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  .nav__menu::-webkit-scrollbar-thumb {
+    background-color: hsl(220, 12%, 70%);
+  }
+
+  .nav__logo img {
+    width: 65px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .container {
+    /* max-width: 1280px; */
+    margin-inline: 1rem;
+  }
+}
+
+.nav__link {
+  color: #333;
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+.nav__link:hover {
+  background-color: var(--first-color-lighten);
+}
+
+/* Show menu */
+.show-menu {
+  opacity: 1;
+  top: 3.5rem;
+  pointer-events: initial;
+}
+
+/* Show icon */
+.show-icon .nav__toggle-menu {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+.show-icon .nav__toggle-close {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+
+
+/*=============== DROPDOWN ===============*/
+.dropdown__button {
+  cursor: pointer;
+}
+.dropdown__arrow {
+  font-size: 1.5rem;
+  font-weight: initial;
+  transition: transform 0.4s;
+}
+.dropdown__content, .dropdown__group, .dropdown__list {
+  display: grid;
+}
+.dropdown__container {
+  background-color: var(--first-color-lighten);
+  height: 0;
+  overflow: hidden;
+  transition: height 0.4s;
+}
+.dropdown__content {
+  row-gap: 1.75rem;
+}
+.dropdown__group {
+  padding-left: 2.5rem;
+  row-gap: 0.5rem;
+}
+.dropdown__group:first-child {
+  margin-top: 1.25rem;
+}
+.dropdown__group:last-child {
+  margin-bottom: 1.25rem;
+}
+.dropdown__icon i {
+  font-size: 1.25rem;
+  color: #017143;
+}
+.dropdown__title {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: #333;
+}
+.dropdown__list {
+  row-gap: 0.25rem;
+}
+.dropdown__link {
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-medium);
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+.dropdown__link:hover {
+  color: #017143 !important;
+}
+
+/* Rotate dropdown icon */
+.show-dropdown .dropdown__arrow {
+  transform: rotate(180deg);
+}
+/*=============== BANNER ===============*/
+.banner {
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(bannerberita.webp);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    /* font-style: italic; */
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    padding-top: 20px;
+}
+
+.banner-text h2 {
+    color: #fff;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+.banner-btn a {
+    font-size: 0.9rem;
+    padding: 13px 35px;
+    background-color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+     .banner-text h2 {
+        font-size: 1.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-text h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/*=============== BERITA ===============*/
+.berita {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.berita :is(h1, h2) {
+    font-size: 36px;
+    font-weight: 600;
+/* margin-bottom: 10px; */
+}
+
+.berita p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.berita-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.berita-col {
+    flex-basis: 31%;
+    border-radius: 7px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    overflow: hidden;
+    text-align: left;
+    padding: 15px;
+}
+
+.berita-col p {
+    padding: 0;
+}
+
+.berita-col img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    /* margin-bottom: 10px; */
+}
+
+.berita-col .tanggal {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.berita-col h3 {
+    font-size: 18px;
+    font-weight: 600;
+    /* margin-bottom: 15px; */
+    color: #333;
+}
+
+.berita-col .baca-selengkapnya {
+    font-size: 14px;
+    font-weight: 600;
+    color: #007BFF;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.berita-col .baca-selengkapnya:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+    .berita-row {
+        flex-direction: column;
+    }
+
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+    background-color: #ffffff;
+    padding: 40px 10%;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.logo-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    max-width: 170px;
+    margin-bottom: -15px;
+}
+
+.footer-company {
+    font-weight: bold;
+    font-size: 35px;
+    margin-bottom: 7px;
+    color: #333;
+    line-height: 1;
+}
+
+.footer-slogan {
+    color: #555;
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0;
+    margin-top: 15px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-map {
+    flex: 1.5;
+    min-width: 300px;
+}
+
+.map-container {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-heading {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: #0056b3;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: #555;
+    font-size: 32px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
+
+.footer-bottom {
+    background-color: #f8f9fa;
+    padding: 15px 10%;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    border-top: 1px solid #ddd;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .footer-map {
+        flex: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-column {
+        margin-bottom: 0;
+        align-items: center;
+        min-width: 100%;
+    }
+
+    .footer-socials {
+        justify-content: center;
+    }
+
+    .map-container {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .footer-company {
+        font-size: 30px; /* Smaller font size on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-company {
+        font-size: 24px; /* Smaller font for very small screens */
+    }
+
+    .footer-slogan {
+        font-size: 16px; /* Adjust slogan size */
+    }
+
+    .footer-links a {
+        font-size: 12px; /* Smaller link size */
+    }
+}
+/*=============== whatsapp ===============*/
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px; /* Jarak dari bawah layar */
+    right: 20px; /* Jarak dari kanan layar */
+    width: 60px; /* Lebar tombol */
+    height: 60px; /* Tinggi tombol */
+    background-color: #25d366; /* Warna hijau khas WhatsApp */
+    color: white; /* Warna ikon */
+    border-radius: 50%; /* Membuat tombol berbentuk lingkaran */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan tombol */
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000; /* Agar tombol berada di atas elemen lainnya */
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1); /* Membesarkan tombol saat hover */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3); /* Menambahkan bayangan saat hover */
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 300px) {
+  .dropdown__group {
+    padding-left: 1.5rem;
+  }
+}
+/* For large devices */
+@media screen and (min-width: 1118px) {
+  /* Nav */
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__toggle {
+    display: none;
+  }
+  .nav__list {
+    display: flex;
+    column-gap: 3rem;
+    height: 100%;
+  }
+  .nav li {
+    display: flex;
+  }
+  .nav__link {
+    padding: 0;
+  }
+  .nav__link:hover {
+    background-color: initial;
+  }
+  /* Dropdown */
+  .dropdown__button {
+    column-gap: 0.25rem;
+    pointer-events: none;
+  }
+  .dropdown__container {
+    height: max-content;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 6.5rem;
+    background-color: var(--body-color);
+    box-shadow: 0 6px 8px hsla(220, 68%, 12%, 0.05);
+    pointer-events: none;
+    opacity: 0;
+    transition: top 0.4s, opacity 0.3s;
+  }
+  .dropdown__content {
+    grid-template-columns: repeat(4, max-content);
+    column-gap: 6rem;
+    max-width: 1120px;
+    margin-inline: auto;
+  }
+  .dropdown__group {
+    padding: 4rem 0;
+    align-content: baseline;
+    row-gap: 1.25rem;
+  }
+  .dropdown__group:first-child, .dropdown__group:last-child {
+    margin: 0;
+  }
+  .dropdown__list {
+    row-gap: 0.75rem;
+  }
+  .dropdown__icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--first-color-lighten);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-bottom: 1rem;
+  }
+  .dropdown__icon i {
+    font-size: 2rem;
+  }
+  .dropdown__title {
+    font-size: var(--normal-font-size);
+  }
+  .dropdown__link {
+    font-size: var(--small-font-size);
+  }
+  .dropdown__link:hover {
+    color: var(--first-color);
+  }
+  .dropdown__item {
+    cursor: pointer;
+  }
+  .dropdown__item:hover .dropdown__arrow {
+    transform: rotate(180deg);
+  }
+  .dropdown__item:hover > .dropdown__container {
+    top: 5.5rem;
+    opacity: 1;
+    pointer-events: initial;
+    cursor: initial;
+  }
+}
